@@ -14,23 +14,17 @@
             <span class="time-left-label">{{ timeLeftString }}</span>
         </div>
     </div>
-    <time-control @custom-event="Change"></time-control>
 </template>
 
 <script>
-import TimeControl from "./TimeControl.vue";
 export default {
     components:{
-        TimeControl
     },
     data() {
         return {
             endTime: new Date().getTime() + 60 * 60000, // 1分後を指定
             timeDiff: 0,
             timer: null,
-            limit:0,
-            elapsed:0
-
         };
     },
     methods: {
@@ -39,11 +33,11 @@ export default {
             return String(num).padStart(2, '0');
         },
 
-        Change(timeElapsed, timeLimit) {
-            this.limit = timeElapsed
-            this.elapsed = timeLimit
+        //Change(timeElapsed, timeLimit) {
+            //this.limit = timeElapsed
+            //this.elapsed = timeLimit
 
-        }
+        //}
     },
     computed: {
         // e.g. timeLeft of 100 -> '01:40'
@@ -66,6 +60,8 @@ export default {
         },
     },
     // Register props to be set from App.vue
+    props: ['elapsed','limit']
+
 };
 </script>
 

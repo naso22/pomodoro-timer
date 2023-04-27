@@ -1,7 +1,7 @@
 <template>
         <div class="time">
             <div class="controll">
-                <div @click="startTimer()">▶︎</div>
+                <div>▶︎</div>
             </div>
         </div>
 </template>
