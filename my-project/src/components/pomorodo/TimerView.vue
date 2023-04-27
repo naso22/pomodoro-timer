@@ -1,7 +1,7 @@
 <template>
 <the-time :elapsed="timeElapsed" :limit="timeLimit"></the-time>
-    <time-control></time-control>
-  <select-mode ></select-mode>
+    <time-control  @child-event="startTimer()"></time-control>
+  <select-mode></select-mode>
 </template>
 
 <script>

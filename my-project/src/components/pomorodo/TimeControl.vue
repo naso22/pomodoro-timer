@@ -1,7 +1,7 @@
 <template>
         <div class="time">
             <div class="controll">
-                <div>▶︎</div>
+                <div @click="eventbutton()">▶︎</div>
             </div>
         </div>
 </template>
@@ -26,6 +26,10 @@ export default {
             }, 1000);
 
         },
+        eventbutton(){
+            this.$emit('child-event');
+        }
+
     },
 
 };
