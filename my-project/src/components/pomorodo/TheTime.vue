@@ -1,39 +1,47 @@
 <template>
     <div class="time">
         <div class="circle">
-            <p>{{time}}</p>
+            <p>{{formatTime}}</p>
         </div>
     </div>
-    <time-control @start="modalSelect"></time-control>
+    <time-control @start="startTimer()"></time-control>
 </template>
 
 <script>
 import TimeControl from "./TimeControl.vue";
 export default {
-components:{
-    TimeControl
-},
+    components:{
+        TimeControl
+    },
     data() {
         return {
-            time: "00:00",
+            endTime: new Date().getTime() + 60 * 60000, // 1分後を指定
+            timeDiff: 0,
             timer: null
         };
+    },
+    computed: {
+        formatTime() {
+            let minutes = Math.floor(this.timeDiff / (60 * 1000));
+            let seconds = Math.floor((this.timeDiff % (60 * 1000)) / 1000);
+            return `${minutes < 10 ? "0" + minutes : minutes}:
+            ${seconds < 10 ? "0" + seconds : seconds}`;
+        }
     },
     methods: {
         startTimer() {
             if (this.timer !== null) {
                 clearInterval(this.timer);
             }
-            let seconds = 0;
             this.timer = setInterval(() => {
-                seconds++;
-                let minutes = Math.floor(seconds / 60);
-                let sec = seconds % 60;
-                this.time = `${minutes < 10 ? "0" + minutes : minutes}:${
-                    sec < 10 ? "0" + sec : sec
-                }`;
+                this.timeDiff = this.endTime - new Date().getTime();
+                if (this.timeDiff <= 0) {
+                    clearInterval(this.timer);
+                    this.timeDiff = 0;
+                }
             }, 1000);
-        }
+        },
+
     }
 };
 </script>

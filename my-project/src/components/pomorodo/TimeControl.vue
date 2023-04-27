@@ -1,7 +1,7 @@
 <template>
         <div class="time">
             <div class="controll">
-                <div @click="emit('start')">▶︎</div>
+                <div @click="$emit('start')">▶︎</div>
             </div>
         </div>
 </template>
