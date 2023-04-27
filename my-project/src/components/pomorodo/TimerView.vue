@@ -18,7 +18,7 @@ export default {
         return{
             timeElapsed:0,
             timerInterval: undefined,
-            timeLimit:10,
+            timeLimit:600,
         }
     },
     methods:{
@@ -31,10 +31,6 @@ export default {
             }, 1000);
 
         },
-
-        start() {
-            this.startTimer()
-        }
     },
 
 

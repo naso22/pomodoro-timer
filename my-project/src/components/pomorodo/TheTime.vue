@@ -69,8 +69,8 @@ export default {
 
 .root {
     margin: 0 auto;
-    height: 300px;
-    width: 300px;
+    height: 350px;
+    width: 350px;
     position: relative;
 }
 
@@ -105,6 +105,7 @@ export default {
     font-size:2.2rem ;
     font-family: 'Segoe UI';
     color: white;
+    letter-spacing: 0.3rem;
 }
 
 .time-left-path {

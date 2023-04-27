@@ -1,8 +1,6 @@
 <template>
-
   <the-header></the-header>
   <timer-view></timer-view>
-
 </template>
 
 <script>
