@@ -12,7 +12,7 @@ export default {
         return{
             timeElapsed:0,
             timerInterval: undefined,
-            timeLimit: 10,
+            timeLimit:10,
         }
     },
     methods:{
@@ -22,8 +22,8 @@ export default {
                 if (++this.timeElapsed === this.timeLimit) {
                     clearInterval(this.timerInterval);
                 }
+                this.$emit('custom-event', this.timeElapsed,this.timeLimit);
             }, 1000);
-
 
         },
     },
