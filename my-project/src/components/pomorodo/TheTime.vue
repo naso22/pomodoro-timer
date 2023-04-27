@@ -14,7 +14,7 @@
             <span class="time-left-label">{{ timeLeftString }}</span>
         </div>
     </div>
-    <time-control @start="startTimer()"></time-control>
+    <time-control @send-data="handleData"></time-control>
 </template>
 
 <script>
@@ -35,6 +35,7 @@ export default {
             // e.g. 4 -> '04'
             return String(num).padStart(2, '0');
         },
+
     },
     computed: {
         // e.g. timeLeft of 100 -> '01:40'
@@ -54,17 +55,6 @@ export default {
             const timeFraction = this.timeLeft / this.limit;
             const elapsedDash = Math.floor(timeFraction * totalLength);
             return `${elapsedDash} ${totalLength}`;
-        },
-    },
-    // Register props to be set from App.vue
-    props: {
-        elapsed: {
-            type: Number,
-            required: true,
-        },
-        limit: {
-            type: Number,
-            required: true,
         },
     },
 };

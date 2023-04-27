@@ -1,15 +1,34 @@
 <template>
         <div class="time">
             <div class="controll">
-                <div @click="$emit('start')">▶︎</div>
+                <div @click="startTimer()">▶︎</div>
             </div>
         </div>
 </template>
 
 <script>
 export default {
-    emits:['start']
-}
+    data(){
+        return{
+            timeElapsed:0,
+            timerInterval: undefined,
+            timeLimit: 10,
+        }
+    },
+    methods:{
+        startTimer() {
+            this.timerInterval = setInterval(() => {
+                // Stop counting when there is no more time left
+                if (++this.timeElapsed === this.timeLimit) {
+                    clearInterval(this.timerInterval);
+                }
+            }, 1000);
+
+
+        },
+    },
+
+};
 
 </script>
 
