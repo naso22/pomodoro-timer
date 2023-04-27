@@ -20,7 +20,7 @@ export default {
 
 <style scoped>
 .time {
-    height:  250px;
+    height:  200px;
     display: flex;
     justify-content: center;
     align-items: center;
