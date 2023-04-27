@@ -1,7 +1,17 @@
 <template>
-    <div class="time">
-        <div class="circle">
-            <p>{{formatTime}}</p>
+    <div class="root">
+        <svg class="svg"
+            viewBox="0 0 100 100"
+            xmlns="http://www.w3.org/2000/svg">
+            <g class="circle">
+                <path class="time-left-path" d="M 50, 50
+            m -45, 0
+            a 45,45 0 1,0 90,0
+            a 45,45 0 1,0 -90,0" :style="{ strokeDasharray }"></path>
+            </g>
+        </svg>
+        <div class="time-left-container">
+            <span class="time-left-label">{{ timeLeftString }}</span>
         </div>
     </div>
     <time-control @start="startTimer()"></time-control>
@@ -20,52 +30,101 @@ export default {
             timer: null
         };
     },
-    computed: {
-        formatTime() {
-            let minutes = Math.floor(this.timeDiff / (60 * 1000));
-            let seconds = Math.floor((this.timeDiff % (60 * 1000)) / 1000);
-            return `${minutes < 10 ? "0" + minutes : minutes}:
-            ${seconds < 10 ? "0" + seconds : seconds}`;
-        }
-    },
     methods: {
-        startTimer() {
-            if (this.timer !== null) {
-                clearInterval(this.timer);
-            }
-            this.timer = setInterval(() => {
-                this.timeDiff = this.endTime - new Date().getTime();
-                if (this.timeDiff <= 0) {
-                    clearInterval(this.timer);
-                    this.timeDiff = 0;
-                }
-            }, 1000);
+        padToTwo(num) {
+            // e.g. 4 -> '04'
+            return String(num).padStart(2, '0');
+        },
+    },
+    computed: {
+        // e.g. timeLeft of 100 -> '01:40'
+        timeLeftString() {
+            const timeLeft = this.timeLeft;
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            return `${this.padToTwo(minutes)}:${this.padToTwo(seconds)}`;
+        },
+        timeLeft() {
+            return this.limit - this.elapsed;
         },
 
-    }
+        strokeDasharray() {
+            const radius = 45;
+            const totalLength = 2 * Math.PI * radius;
+            const timeFraction = this.timeLeft / this.limit;
+            const elapsedDash = Math.floor(timeFraction * totalLength);
+            return `${elapsedDash} ${totalLength}`;
+        },
+    },
+    // Register props to be set from App.vue
+    props: {
+        elapsed: {
+            type: Number,
+            required: true,
+        },
+        limit: {
+            type: Number,
+            required: true,
+        },
+    },
 };
 </script>
 
 <style scoped>
-.circle {
-    width: 150px;
-    height: 150px;
-    padding: 5rem;
-    border-radius: 50%;
-    background-color: transparent;
-    border: 0.1rem solid #ffffff;
+
+.root {
     margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 300px;
+    width: 300px;
+    position: relative;
 }
 
-.circle p {
-    color: white;
-    font-weight: inherit;
-    font-size: 2.5rem;
-    letter-spacing: 0.2rem;
-    text-align: center;
-    line-height: 140px; /* 円の高さ - paddingの合計値 */
+/* Removes SVG styling that would hide the time label */
+.circle {
+    fill: none;
+    stroke: none;
 }
+
+/* The SVG path that displays the timer's progress */
+.time-elapsed-path {
+    stroke-width: 7px;
+    stroke: rgba(28, 108, 225, 0);
+}
+
+.time-left-container {
+    /* Size should be the same as that of parent container */
+    height: inherit;
+    width: inherit;
+
+    /* Place container on top of circle ring */
+    position: absolute;
+    top: 0;
+
+    /* Center content (label) vertically and horizontally  */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.time-left-label {
+    font-size:2.2rem ;
+    font-family: 'Segoe UI';
+    color: white;
+}
+
+.time-left-path {
+    /* Same thickness as the original ring */
+    stroke-width: 0.7px;
+    /* Rounds the path endings  */
+    stroke-linecap: round;
+    /* Makes sure the animation starts at the top of the circle */
+    transform: rotate(90deg);
+    transform-origin: center;
+    /* One second aligns with the speed of the countdown timer */
+    transition: 1s linear all;
+    /* Colors the ring */
+    stroke: white;
+}
+
+
 </style>
