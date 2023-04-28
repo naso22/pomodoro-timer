@@ -6,7 +6,6 @@ import TimerView from "./components/pomorodo/TimerView.vue";
 const router =createRouter({
     history:createWebHistory(),
     routes:[
-
         {path:'/home',component:TimerView},
         { path: '/', redirect: '/home' },
         {path:'/setting',component:SettingTimer}
@@ -15,5 +14,5 @@ const router =createRouter({
 
 
 const app=createApp(App);
-app.use(router)
-app.mount('#app')
+app.use(router);
+app.mount('#app');

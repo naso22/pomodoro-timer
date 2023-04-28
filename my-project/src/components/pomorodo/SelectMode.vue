@@ -9,7 +9,6 @@
 
 <style scoped>
 
-
 nav {
     display: flex;
     justify-content: center;

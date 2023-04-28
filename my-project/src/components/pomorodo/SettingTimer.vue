@@ -2,12 +2,11 @@
     <div class="container">
         <table>
             <tr>
-            <th >Work Time</th>
+            <th >{{limit}}</th>
                 <td>
             <input type="number" id="work-time" name="work-time" min="1" max="120" required>
                 </td>
             </tr>
-
             <tr>
                 <th >break Time</th>
                 <td>
@@ -26,7 +25,6 @@
 </template>
 
 <script>
-
 </script>
 
 <style>
