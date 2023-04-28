@@ -1,29 +1,29 @@
 <template>
+    <div class="back">
   <the-header></the-header>
-  <timer-view></timer-view>
+  <router-view></router-view>
+    <select-mode></select-mode>
+    </div>
 </template>
 
 <script>
-import TimerView from './components/pomorodo/TimerView.vue';
 import TheHeader from './components/layouts/The-Header.vue';
+import SelectMode from "./components/pomorodo/SelectMode.vue";
 
 export default {
   name: 'App',
   components: {
+      SelectMode,
       TheHeader,
-      TimerView
   }
 }
 </script>
 
 <style>
 body{
-    background: linear-gradient(#726BD6, #8c80f5);
-}
-
-body{
     margin: 0px;
     padding: 0px;
+    background: linear-gradient(#726BD6, #8c80f5);
 
 }
 
@@ -39,4 +39,6 @@ a{
 p{
     margin: 0px ;
 }
+
+
 </style>

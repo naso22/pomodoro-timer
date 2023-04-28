@@ -1,18 +1,15 @@
 <template>
 <the-time :elapsed="timeElapsed" :limit="timeLimit"></the-time>
     <time-control  @child-event="startTimer()"></time-control>
-  <select-mode></select-mode>
 </template>
 
 <script>
 import TheTime from './TheTime.vue';
-import SelectMode  from './SelectMode.vue'
 import TimeControl from "./TimeControl.vue";
 export default {
     components:{
         TimeControl,
         TheTime,
-        SelectMode
     },
     data(){
         return{

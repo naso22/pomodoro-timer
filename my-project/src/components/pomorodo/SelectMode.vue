@@ -1,19 +1,21 @@
 <template>
     <nav>
         <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">seeting</a></li>
+            <li><router-link to="/home">Home</router-link></li>
+            <li><router-link to="/setting">setting</router-link></li>
         </ul>
     </nav>
 </template>
 
-<style>
+<style scoped>
+
+
 nav {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 10px;
-    height: 110px;
+    height: 15vh;
 }
 
 nav ul {
@@ -43,3 +45,5 @@ nav li a:hover {
 color: rgba(255, 255, 255, 0.58);
 }
 </style>
+<script setup>
+</script>
