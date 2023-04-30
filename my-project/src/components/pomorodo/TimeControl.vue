@@ -1,8 +1,14 @@
 <template>
         <div class="time">
             <div class="controll">
+                <div @click="eventbutton()"></div>
+            </div>
+            <div class="controll">
                 <div @click="eventbutton()">▶︎</div>
             </div>
+            <div class="controll">
+            <div @click="eventbutton()">▶︎</div>
+        </div>
         </div>
 </template>
 

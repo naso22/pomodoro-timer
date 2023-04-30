@@ -69,8 +69,8 @@ export default {
 
 .root {
     margin: 0 auto;
-    height: 350px;
-    width: 350px;
+    height: 50vh;
+    width: 50vh;
     position: relative;
 }
 
@@ -102,7 +102,7 @@ export default {
 }
 
 .time-left-label {
-    font-size:2.2rem ;
+    font-size:4rem ;
     font-family: 'Segoe UI';
     color: white;
     letter-spacing: 0.3rem;
