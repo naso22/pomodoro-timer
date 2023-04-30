@@ -1,14 +1,18 @@
 <template>
         <div class="time">
             <div class="controll">
-                <div @click="eventbutton()"></div>
+                <button @click="eventbutton()">
+                    setting
+                </button>
             </div>
-            <div class="controll">
+            <button class="controll">
                 <div @click="eventbutton()">▶︎</div>
+            </button>
+            <button class="controll">
+            <div @click="eventbutton()">
+               next
             </div>
-            <div class="controll">
-            <div @click="eventbutton()">▶︎</div>
-        </div>
+        </button>
         </div>
 </template>
 
@@ -35,6 +39,7 @@ export default {
 .controll {
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 
