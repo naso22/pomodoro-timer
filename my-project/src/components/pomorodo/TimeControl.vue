@@ -1,15 +1,19 @@
 <template>
         <div class="time">
             <div class="controll">
-                <button @click="eventbutton()">
-                    setting
+                <button>
+                    <svg-icon
+                            class=""
+                            type="mdi"
+                            :path="path">
+                    </svg-icon>
                 </button>
             </div>
             <button class="controll">
-                <div @click="eventbutton()">▶︎</div>
+                <div @click="eventbutton()">▶</div>
             </button>
             <button class="controll">
-            <div @click="eventbutton()">
+            <div>
                next
             </div>
         </button>
@@ -17,7 +21,19 @@
 </template>
 
 <script>
+import SvgIcon from '@jamescoyle/vue-icon';
+import { mdiTune } from '@mdi/js';
+
+
 export default {
+    components: {
+        SvgIcon
+    },
+    data() {
+        return {
+            path: mdiTune,
+        }
+    },
     methods: {
         eventbutton() {
             this.$emit('child-event');
