@@ -3,27 +3,36 @@
             <div class="controll">
                 <button>
                     <svg-icon
-                            class=""
+                            class="settingicon"
                             type="mdi"
-                            :path="path">
+                            :path="mdiTune">
                     </svg-icon>
                 </button>
             </div>
             <button class="controll">
-                <div @click="eventbutton()">▶</div>
+                <div @click="eventbutton()">
+                    <svg-icon
+                   class="settingicon"
+                     type="mdi"
+                     :path="mdiPlayOutline">
+                      mdi-play-outline
+                    </svg-icon>
+                </div>
             </button>
             <button class="controll">
-            <div>
-               next
-            </div>
+                <svg-icon
+                        class="settingicon"
+                        type="mdi"
+                        :path="mdiSkipNext">
+                    mdi-play-outline
+                </svg-icon>
         </button>
         </div>
 </template>
 
 <script>
 import SvgIcon from '@jamescoyle/vue-icon';
-import { mdiTune } from '@mdi/js';
-
+import { mdiPlayOutline,mdiTune,mdiSkipNext } from '@mdi/js';
 
 export default {
     components: {
@@ -31,7 +40,14 @@ export default {
     },
     data() {
         return {
-            path: mdiTune,
+            path:[
+            mdiPlayOutline,
+            mdiTune,
+            mdiSkipNext
+            ],
+            mdiTune: mdiTune,
+            mdiPlayOutline:mdiPlayOutline,
+            mdiSkipNext: mdiSkipNext
         }
     },
     methods: {
@@ -53,9 +69,7 @@ export default {
 }
 
 .controll {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+   width: 20vh;
 }
 
 
@@ -70,8 +84,11 @@ div {
     cursor: pointer;
     color: rgba(255, 255, 255, 0.58);
 }
+
+.settingicon{
+    width: 2.5rem;
+    height: 2.5rem;
+}
 </style>
 
 
-<script setup>
-</script>
