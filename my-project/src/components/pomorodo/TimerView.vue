@@ -16,7 +16,7 @@ export default {
         return {
             timeElapsed: 0,
             timerInterval: undefined,
-            timeLimit: 600,
+            timeLimit:60,
         }
     },
     methods: {

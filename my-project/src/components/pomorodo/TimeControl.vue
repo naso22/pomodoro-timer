@@ -10,7 +10,7 @@
             </button>
         </div>
         <button class="controll">
-            <div @click="eventbutton()" class="circle">
+            <div @click="eventbutton()">
                 <svg-icon
                         class="settingicon__center"
                         type="mdi"
@@ -67,7 +67,7 @@ export default {
 }
 
 .controll {
-    width: 20vh;
+margin: 90px;
 }
 
 
@@ -81,6 +81,7 @@ div {
 div :hover {
     cursor: pointer;
     color: rgba(255, 255, 255, 0.58);
+
 }
 
 .settingicon {
