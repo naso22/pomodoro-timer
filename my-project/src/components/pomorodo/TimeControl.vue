@@ -1,5 +1,6 @@
 <template>
     <div class="time">
+        <!--時間設定ボタン-->
         <div class="controll">
             <button>
                 <svg-icon
@@ -10,21 +11,25 @@
             </button>
         </div>
         <button class="controll">
+            <!--スタート・ストップボタン-->
             <div v-if="isplaying" @click="eventbutton()">
+                <!--"isplaying"が trueの時ストップボタンを表示-->
                 <svg-icon
-                    class="settingicon__center"
-                    type="mdi"
-                    :path="mdiStop">
+                        class="settingicon__center"
+                        type="mdi"
+                        :path="mdiStop">
                 </svg-icon>
             </div>
+            <!--"isplaying"が falseの時スタートボタンを表示-->
             <div v-else @click="eventbutton()">
                 <svg-icon
-                    class="settingicon__center"
-                    type="mdi"
-                    :path="mdiPlayOutline">
+                        class="settingicon__center"
+                        type="mdi"
+                        :path="mdiPlayOutline">
                 </svg-icon>
             </div>
         </button>
+        <!--スキップボタン-->
         <button class="controll">
             <svg-icon
                     class="settingicon"
@@ -43,7 +48,7 @@ export default {
     components: {
         SvgIcon
     },
-    props:['isplaying'],
+    props: ['isplaying'],
     data() {
         return {
             path: [
@@ -56,13 +61,14 @@ export default {
             mdiPlayOutline: mdiPlayOutline,
             mdiSkipNext: mdiSkipNext,
             mdiStop: mdiStop,
-            isPlaying:false
+            isPlaying: false
         }
     },
     methods: {
+        /*スタート・ストップボタン切り替え*/
         eventbutton() {
             this.isPlaying = !this.isplaying;
-            this.$emit('child-event',this.isPlaying);
+            this.$emit('child-event', this.isPlaying);
         },
     },
 
