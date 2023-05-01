@@ -1,6 +1,6 @@
 <template>
     <the-time :elapsed="timeElapsed" :limit="timeLimit"></the-time>
-    <time-control @child-event="breakstart" :isplaying="isPlaying"></time-control>
+    <time-control @child-event="startTimer" :isplaying="isPlaying"></time-control>
 </template>
 
 <script>
@@ -21,8 +21,6 @@ export default {
             FixedLimit:10,
 
             //（休憩時間）経過時間・タイマーの間隔・秒数設定
-            breakElapsed: 0,
-            breakInterval: undefined,
             breakLimit: 5,
 
             //ストップ・スタートの切り替え
@@ -33,26 +31,8 @@ export default {
         }
     },
     methods: {
-        breakstart() {
-            if (this.count % 2 === 0) {
-                this.timeElapsed = 0
-                this.timerInterval= undefined
-                this.timeLimit = this.FixedLimit
-                console.log('フォーカスタイム始まり')
-                this.startTimer(true)
-
-            } else {
-                this.timeElapsed = 0
-                this.timerInterval = undefined
-                this.timeLimit = this.breakLimit
-                console.log('フォーカスタイム終了')
-                this.startTimer(true)
-            }
-        },
-
         //スタート・ストップボタンを押した時
         startTimer(isPlaying) {
-            this.count=this.count+1
             this.isPlaying = isPlaying;
             clearInterval(this.timerInterval);
             //1秒ごと実行
@@ -63,14 +43,28 @@ export default {
                         setTimeout(() => {
                             //カウント終わり
                             clearInterval(this.timerInterval);
+                            this.timeElapsed = 0
+                            this.timerInterval = undefined
+                            this.count=this.count+1
                             //休憩時間の実行
-                            
+                            this.startBreakTimer()
                             //スタートボタンに切り替え
                             this.isPlaying = false;
                         }, 1000);
                     }
                 }
             }, 1000);
+        },
+
+        startBreakTimer() {
+            if (this.count % 2 === 0) {
+                this.timeLimit = this.FixedLimit
+                console.log('フォーカスタイム始まり')
+
+            } else {
+                this.timeLimit = this.breakLimit
+                console.log('フォーカスタイム終了')
+            }
         },
     },
 
