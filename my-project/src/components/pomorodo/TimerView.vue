@@ -43,9 +43,16 @@ export default {
         },
 
         breakstart() {
-          this.timeElapsed=0;
-          this.timerInterval=undefined;
-          this.timeLimit=10
+            this.breakInterval = setInterval(() => {
+                    // Stop counting when there is no more time left
+                    if (++this.breakElapsed === this.breakLimit) {
+                        setTimeout(() => {
+                            clearInterval(this.breakInterval);
+                            this.breakstart()
+                            this.isPlaying = false;
+                        }, 1000);
+                    }
+            }, 1000);
         },
 
     },

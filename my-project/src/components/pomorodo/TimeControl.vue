@@ -61,7 +61,7 @@ export default {
     },
     methods: {
         eventbutton() {
-            this.isPlaying = !this.isPlaying;
+            this.isPlaying = !this.isplaying;
             this.$emit('child-event',this.isPlaying);
         },
     },
