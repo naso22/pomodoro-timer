@@ -22,7 +22,7 @@ export default {
     },
     data() {
         return {
-            endTime: new Date().getTime() + 60 * 60000, // 1分後を指定
+            //endTime: new Date().getTime() + 600 * 60000, // 1分後を指定
             timeDiff: 0,
             timer: null,
         };

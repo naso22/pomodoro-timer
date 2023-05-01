@@ -1,6 +1,6 @@
 <template>
     <the-time :elapsed="timeElapsed" :limit="timeLimit"></the-time>
-    <time-control @child-event="startTimer()"></time-control>
+    <time-control @child-event="startTimer"></time-control>
 </template>
 
 <script>
@@ -16,19 +16,37 @@ export default {
         return {
             timeElapsed: 0,
             timerInterval: undefined,
-            timeLimit:60,
+            timeLimit: 1250,
+            breakeLimit: 300,
         }
     },
     methods: {
-        startTimer() {
+        startTimer(isPlaying) {
+            clearInterval(this.timerInterval);
             this.timerInterval = setInterval(() => {
-                // Stop counting when there is no more time left
-                if (++this.timeElapsed === this.timeLimit) {
-                    clearInterval(this.timerInterval);
+                if (isPlaying) {
+                    // Stop counting when there is no more time left
+                    if (++this.timeElapsed === this.timeLimit) {
+                        clearInterval(this.timerInterval);
+                        breakstart()
+                    }
                 }
             }, 1000);
-
         },
+
+        breakstart() {
+                clearInterval(this.timerInterval);
+                this.timerInterval = setInterval(() => {
+                    if (isPlaying) {
+                        // Stop counting when there is no more time left
+                        if (++this.timeElapsed === this.timeLimit) {
+                            clearInterval(this.timerInterval);
+                            breakstart()
+                        }
+                    }
+                }, 1000);
+        }
+
     },
 
 
