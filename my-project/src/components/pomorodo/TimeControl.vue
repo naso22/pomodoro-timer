@@ -10,18 +10,18 @@
             </button>
         </div>
         <button class="controll">
-            <div v-if="isPlaying" @click="eventbutton()">
+            <div v-if="isplaying" @click="eventbutton()">
                 <svg-icon
-                        class="settingicon__center"
-                        type="mdi"
-                        :path="mdiPlayOutline">
+                    class="settingicon__center"
+                    type="mdi"
+                    :path="mdiStop">
                 </svg-icon>
             </div>
             <div v-else @click="eventbutton()">
                 <svg-icon
-                        class="settingicon__center"
-                        type="mdi"
-                        :path="mdiStop">
+                    class="settingicon__center"
+                    type="mdi"
+                    :path="mdiPlayOutline">
                 </svg-icon>
             </div>
         </button>
@@ -37,12 +37,13 @@
 
 <script>
 import SvgIcon from '@jamescoyle/vue-icon';
-import {mdiPlayOutline, mdiTune, mdiSkipNext,mdiStop} from '@mdi/js';
+import {mdiPlayOutline, mdiTune, mdiSkipNext, mdiStop} from '@mdi/js';
 
 export default {
     components: {
         SvgIcon
     },
+    props:['isplaying'],
     data() {
         return {
             path: [
@@ -54,16 +55,16 @@ export default {
             mdiTune: mdiTune,
             mdiPlayOutline: mdiPlayOutline,
             mdiSkipNext: mdiSkipNext,
-            mdiStop:mdiStop,
-            isPlaying:true
+            mdiStop: mdiStop,
+            isPlaying:false
         }
     },
     methods: {
         eventbutton() {
+            this.isPlaying = !this.isPlaying;
             this.$emit('child-event',this.isPlaying);
-            this.isPlaying=!this.isPlaying;
         },
-    }
+    },
 
 };
 

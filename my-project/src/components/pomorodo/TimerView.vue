@@ -1,6 +1,6 @@
 <template>
-    <the-time :elapsed="timeElapsed" :limit="timeLimit"></the-time>
-    <time-control @child-event="startTimer"></time-control>
+    <the-time :elapsed="timeElapsed" :limit="timeLimit" ></the-time>
+    <time-control @child-event="startTimer" :isplaying="isPlaying"></time-control>
 </template>
 
 <script>
@@ -16,36 +16,37 @@ export default {
         return {
             timeElapsed: 0,
             timerInterval: undefined,
-            timeLimit: 1250,
-            breakeLimit: 300,
+            timeLimit: 3,
+            breakElapsed: 0,
+            breakInterval: undefined,
+            breakLimit: 10,
+            isPlaying: false,
+
         }
     },
     methods: {
         startTimer(isPlaying) {
+            this.isPlaying = isPlaying;
             clearInterval(this.timerInterval);
             this.timerInterval = setInterval(() => {
-                if (isPlaying) {
+                    if (isPlaying) {
                     // Stop counting when there is no more time left
                     if (++this.timeElapsed === this.timeLimit) {
-                        clearInterval(this.timerInterval);
-                        breakstart()
+                        setTimeout(() => {
+                            clearInterval(this.timerInterval);
+                            this.breakstart()
+                            this.isPlaying = false;
+                        }, 1000);
                     }
                 }
             }, 1000);
         },
 
         breakstart() {
-                clearInterval(this.timerInterval);
-                this.timerInterval = setInterval(() => {
-                    if (isPlaying) {
-                        // Stop counting when there is no more time left
-                        if (++this.timeElapsed === this.timeLimit) {
-                            clearInterval(this.timerInterval);
-                            breakstart()
-                        }
-                    }
-                }, 1000);
-        }
+          this.timeElapsed=0;
+          this.timerInterval=undefined;
+          this.timeLimit=10
+        },
 
     },
 
