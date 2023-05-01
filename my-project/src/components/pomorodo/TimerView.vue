@@ -14,11 +14,11 @@ export default {
     },
     data() {
         return {
-            //（集中タイム）経過時間・タイマーの間隔・秒数設定
+            //（集中タイム）経過時間・タイマーの間隔・初期秒数設定・秒数設定
             timeElapsed: 0,
             timerInterval: undefined,
-            timeLimit:10,
-            FixedLimit:10,
+            timeLimit: 10,
+            FixedLimit: 10,
 
             //（休憩時間）経過時間・タイマーの間隔・秒数設定
             breakLimit: 5,
@@ -26,7 +26,7 @@ export default {
             //ストップ・スタートの切り替え
             isPlaying: false,
 
-            count : 0
+            count: 0
 
         }
     },
@@ -45,7 +45,7 @@ export default {
                             clearInterval(this.timerInterval);
                             this.timeElapsed = 0
                             this.timerInterval = undefined
-                            this.count=this.count+1
+                            this.count = this.count + 1
                             //休憩時間の実行
                             this.startBreakTimer()
                             //スタートボタンに切り替え
@@ -55,7 +55,6 @@ export default {
                 }
             }, 1000);
         },
-
         startBreakTimer() {
             if (this.count % 2 === 0) {
                 this.timeLimit = this.FixedLimit
