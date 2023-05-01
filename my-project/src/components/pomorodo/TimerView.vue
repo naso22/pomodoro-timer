@@ -1,6 +1,6 @@
 <template>
     <the-time :elapsed="timeElapsed" :limit="timeLimit"></the-time>
-    <time-control @child-event="startTimer" :isplaying="isPlaying"></time-control>
+    <time-control @child-event="breakstart" :isplaying="isPlaying"></time-control>
 </template>
 
 <script>
@@ -17,21 +17,42 @@ export default {
             //（集中タイム）経過時間・タイマーの間隔・秒数設定
             timeElapsed: 0,
             timerInterval: undefined,
-            timeLimit: 3,
+            timeLimit:10,
+            FixedLimit:10,
 
             //（休憩時間）経過時間・タイマーの間隔・秒数設定
             breakElapsed: 0,
             breakInterval: undefined,
-            breakLimit: 10,
+            breakLimit: 5,
 
             //ストップ・スタートの切り替え
             isPlaying: false,
 
+            count : 0
+
         }
     },
     methods: {
+        breakstart() {
+            if (this.count % 2 === 0) {
+                this.timeElapsed = 0
+                this.timerInterval= undefined
+                this.timeLimit = this.FixedLimit
+                console.log('フォーカスタイム始まり')
+                this.startTimer(true)
+
+            } else {
+                this.timeElapsed = 0
+                this.timerInterval = undefined
+                this.timeLimit = this.breakLimit
+                console.log('フォーカスタイム終了')
+                this.startTimer(true)
+            }
+        },
+
         //スタート・ストップボタンを押した時
         startTimer(isPlaying) {
+            this.count=this.count+1
             this.isPlaying = isPlaying;
             clearInterval(this.timerInterval);
             //1秒ごと実行
@@ -43,7 +64,7 @@ export default {
                             //カウント終わり
                             clearInterval(this.timerInterval);
                             //休憩時間の実行
-                            this.breakstart()
+                            
                             //スタートボタンに切り替え
                             this.isPlaying = false;
                         }, 1000);
@@ -51,20 +72,6 @@ export default {
                 }
             }, 1000);
         },
-
-        breakstart() {
-            this.breakInterval = setInterval(() => {
-                // Stop counting when there is no more time left
-                if (++this.breakElapsed === this.breakLimit) {
-                    setTimeout(() => {
-                        clearInterval(this.breakInterval);
-                        this.breakstart()
-                        this.isPlaying = false;
-                    }, 1000);
-                }
-            }, 1000);
-        },
-
     },
 
 
