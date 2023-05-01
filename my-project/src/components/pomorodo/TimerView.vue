@@ -1,24 +1,25 @@
 <template>
-<the-time :elapsed="timeElapsed" :limit="timeLimit"></the-time>
-    <time-control  @child-event="startTimer()"></time-control>
+    <the-time :elapsed="timeElapsed" :limit="timeLimit"></the-time>
+    <time-control @child-event="startTimer()"></time-control>
 </template>
 
 <script>
 import TheTime from './TheTime.vue';
 import TimeControl from "./TimeControl.vue";
+
 export default {
-    components:{
+    components: {
         TimeControl,
         TheTime,
     },
-    data(){
-        return{
-            timeElapsed:0,
+    data() {
+        return {
+            timeElapsed: 0,
             timerInterval: undefined,
-            timeLimit:600,
+            timeLimit: 600,
         }
     },
-    methods:{
+    methods: {
         startTimer() {
             this.timerInterval = setInterval(() => {
                 // Stop counting when there is no more time left
