@@ -30,7 +30,7 @@
             </div>
         </button>
         <!--スキップボタン-->
-        <button class="controll">
+        <button class="controll" @click="skipbutton()">
             <svg-icon
                     class="settingicon"
                     type="mdi"
@@ -70,6 +70,10 @@ export default {
             this.isPlaying = !this.isplaying;
             this.$emit('child-event', this.isPlaying);
         },
+
+        skipbutton(){
+            this.$emit('skip-event');
+        }
     },
 
 };

@@ -1,7 +1,7 @@
 <template>
     <timer-status :status="Status"></timer-status>
     <the-time :elapsed="timeElapsed" :limit="timeLimit"></the-time>
-    <time-control @child-event="startTimer" :isplaying="isPlaying"></time-control>
+    <time-control @child-event="setTimer" @skip-event="skipTimer()" :isplaying="isPlaying"></time-control>
 </template>
 
 <script>
@@ -32,28 +32,40 @@ export default {
             count: 0,
 
             /*集中・休憩判定*/
-            Status:false
+            Status: false
 
         }
     },
     methods: {
-        //スタート・ストップボタンを押した時
-        startTimer(isPlaying) {
+
+        setTimer(isPlaying) {
             this.isPlaying = isPlaying;
+            if (this.count % 2 === 0) {
+                this.timeLimit = this.FixedLimit
+                this.Status = false;
+                this.startTimer(true)
+
+            } else {
+                this.timeLimit = this.breakLimit
+                this.Status = true;
+                this.startTimer(true)
+            }
+        },
+        //スタート・ストップボタンを押した時
+        startTimer() {
             clearInterval(this.timerInterval);
             //1秒ごと実行
             this.timerInterval = setInterval(() => {
-                if (isPlaying) {
+                if (this.isPlaying) {
                     // 残り時間がなくなったらカウントを止める
                     if (++this.timeElapsed === this.timeLimit) {
                         setTimeout(() => {
                             //カウント終わり
                             clearInterval(this.timerInterval);
                             this.timeElapsed = 0
-                            this.timerInterval = undefined
                             this.count = this.count + 1
                             //休憩時間の実行
-                            this.startBreakTimer()
+                            this.setTimer()
                             //スタートボタンに切り替え
                             this.isPlaying = false;
                         }, 1000);
@@ -61,18 +73,10 @@ export default {
                 }
             }, 1000);
         },
-        startBreakTimer() {
-            if (this.count % 2 === 0) {
-                this.timeLimit = this.FixedLimit
-                console.log('フォーカスタイム始まり')
-
-            } else {
-                this.timeLimit = this.breakLimit
-                console.log('フォーカスタイム終了')
-            }
-
-            this.Status=!this.Status;
-        },
+        skipTimer() {
+            this.count = this.count + 1;
+            this.setTimer()
+        }
     },
 
 
