@@ -6,6 +6,6 @@
 
 <style>
   header{
-      height: 100px;
+      height: 10vh;
   }
 </style>

@@ -38,15 +38,18 @@
             </svg-icon>
         </button>
     </div>
+    <action-modal></action-modal>
 </template>
 
 <script>
+import ActionModal from "./ActionModal.vue";
 import SvgIcon from '@jamescoyle/vue-icon';
 import {mdiPlayOutline, mdiTune, mdiSkipNext, mdiStop} from '@mdi/js';
 
 export default {
     components: {
-        SvgIcon
+        SvgIcon,
+        ActionModal
     },
     props: ['isplaying'],
     data() {
@@ -100,7 +103,7 @@ div {
     text-align: center;
 }
 
-div :hover {
+button :hover {
     cursor: pointer;
     color: rgba(255, 255, 255, 0.58);
 
