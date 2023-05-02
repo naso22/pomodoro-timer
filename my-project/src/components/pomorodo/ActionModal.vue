@@ -1,4 +1,5 @@
 <template>
+    <div class="modal__backdrop">
     <div class="modal-content">
         <h3>setting menu</h3>
         <button data-v-74f6acd3 class="modal__close">
@@ -33,9 +34,22 @@
             <button type="submit" class="configbtn"> Confirm</button>
         </form>
     </div>
+    </div>
 </template>
 
 <style scoped>
+.modal__backdrop {
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: hsla(252, 65%, 76%, 0.18);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 h3{
     font-weight: normal;
 }
@@ -45,6 +59,7 @@ h3{
     width: 80vh;
     border-radius: 15px;
     position: relative;
+    background-color: rgb(177, 166, 234);
 }
 
 .form__input {
