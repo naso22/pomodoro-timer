@@ -39,21 +39,21 @@ export default {
     methods: {
 
         setTimer(isPlaying) {
+            clearInterval(this.timerInterval);
             this.isPlaying = isPlaying;
             if (this.count % 2 === 0) {
                 this.timeLimit = this.FixedLimit
                 this.Status = false;
-                this.startTimer(true)
+                this.startTimer()
 
             } else {
-                this.timeLimit = this.breakLimit
+                this.timeLimit =this.breakLimit
                 this.Status = true;
-                this.startTimer(true)
+                this.startTimer()
             }
         },
         //スタート・ストップボタンを押した時
         startTimer() {
-            clearInterval(this.timerInterval);
             //1秒ごと実行
             this.timerInterval = setInterval(() => {
                 if (this.isPlaying) {
@@ -75,6 +75,7 @@ export default {
         },
         skipTimer() {
             this.count = this.count + 1;
+            this.timeElapsed = 0;
             this.setTimer()
         }
     },
