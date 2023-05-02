@@ -1,8 +1,8 @@
 <template>
-    <div class="modal__backdrop">
+    <div @click.self="close" class="modal__backdrop">
     <div class="modal-content">
         <h3>setting menu</h3>
-        <button data-v-74f6acd3 class="modal__close">
+        <button  data-v-74f6acd3 class="modal__close" @click="close">
             <svg data-v-74f6acd3 xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
                 <line data-v-74f6acd3 x1="18" y1="6" x2="6" y2="18"></line>
                 <line data-v-74f6acd3 x1="6" y1="6" x2="18" y2="18"></line>
@@ -36,6 +36,16 @@
     </div>
     </div>
 </template>
+
+<script>
+export default {
+    methods:{
+        close(){
+            this.$emit('close-action');
+        }
+    }
+}
+</script>
 
 <style scoped>
 .modal__backdrop {

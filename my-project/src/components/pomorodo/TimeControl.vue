@@ -39,6 +39,7 @@
         </button>
     </div>
     <action-modal
+        @close-action="toggleModal"
             v-show="isShowingAdjustments"
     ></action-modal>
 </template>
