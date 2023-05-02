@@ -2,7 +2,7 @@
     <div class="time">
         <!--時間設定ボタン-->
         <div class="controll">
-            <button>
+            <button @click="toggleModal">
                 <svg-icon
                         class="settingicon"
                         type="mdi"
@@ -38,7 +38,9 @@
             </svg-icon>
         </button>
     </div>
-    <action-modal></action-modal>
+    <action-modal
+            v-show="isShowingAdjustments"
+    ></action-modal>
 </template>
 
 <script>
@@ -64,7 +66,8 @@ export default {
             mdiPlayOutline: mdiPlayOutline,
             mdiSkipNext: mdiSkipNext,
             mdiStop: mdiStop,
-            isPlaying: false
+            isPlaying: false,
+            isShowingAdjustments: false
         }
     },
     methods: {
@@ -74,9 +77,14 @@ export default {
             this.$emit('child-event', this.isPlaying);
         },
 
-        skipbutton(){
+        skipbutton() {
             this.$emit('skip-event');
-        }
+        },
+
+        toggleModal() {
+            this.isShowingAdjustments = !this.isShowingAdjustments
+        },
+
     },
 
 };
@@ -85,7 +93,7 @@ export default {
 
 <style scoped>
 .time {
-    height:35vh;
+    height: 35vh;
     display: flex;
     justify-content: center;
     align-items: center;

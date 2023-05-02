@@ -45,7 +45,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: hsla(252, 65%, 76%, 0.18);
+    background-color: hsla(0, 6%, 17%, 0.38);
     display: flex;
     justify-content: center;
     align-items: center;
