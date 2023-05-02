@@ -1,4 +1,5 @@
 <template>
+    <timer-status :status="Status"></timer-status>
     <the-time :elapsed="timeElapsed" :limit="timeLimit"></the-time>
     <time-control @child-event="startTimer" :isplaying="isPlaying"></time-control>
 </template>
@@ -6,9 +7,11 @@
 <script>
 import TheTime from './TheTime.vue';
 import TimeControl from "./TimeControl.vue";
+import TimerStatus from "./TimerStatus.vue";
 
 export default {
     components: {
+        TimerStatus,
         TimeControl,
         TheTime,
     },
@@ -26,7 +29,10 @@ export default {
             //ストップ・スタートの切り替え
             isPlaying: false,
 
-            count: 0
+            count: 0,
+
+            /*集中・休憩判定*/
+            Status:false
 
         }
     },
@@ -64,6 +70,8 @@ export default {
                 this.timeLimit = this.breakLimit
                 console.log('フォーカスタイム終了')
             }
+
+            this.Status=!this.Status;
         },
     },
 
