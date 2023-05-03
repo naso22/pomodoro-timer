@@ -25,7 +25,7 @@ export default {
 
             //（休憩時間）経過時間・タイマーの間隔・秒数設定
             breakLimit: 5,
-
+            longbreak:20,
             //ストップ・スタートの切り替え
             isPlaying: false,
 
@@ -41,7 +41,7 @@ export default {
         setTimer(isPlaying) {
             clearInterval(this.timerInterval);
             this.isPlaying = isPlaying;
-            if (this.count % 2 === 0) {
+                if (this.count % 2 === 0) {
                 this.timeLimit = this.FixedLimit
                 this.Status = false;
                 this.startTimer()

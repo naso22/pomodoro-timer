@@ -2,7 +2,7 @@
     <div class="time">
         <!--時間設定ボタン-->
         <div class="controll">
-            <button @click="toggleModal">
+            <button @click="toggleModal()">
                 <svg-icon
                         class="settingicon"
                         type="mdi"
@@ -39,9 +39,10 @@
         </button>
     </div>
     <action-modal
-        @close-action="toggleModal"
-            v-show="isShowingAdjustments"
-    ></action-modal>
+        @close="toggleModal"
+        v-show="isShowingAdjustments">
+        <h3>setting menu</h3>
+    </action-modal>
 </template>
 
 <script>
@@ -68,7 +69,7 @@ export default {
             mdiSkipNext: mdiSkipNext,
             mdiStop: mdiStop,
             isPlaying: false,
-            isShowingAdjustments: false
+            isShowingAdjustments:false
         }
     },
     methods: {
@@ -127,6 +128,7 @@ button :hover {
     width: 3rem;
     height: 3rem;;
 }
+
 
 </style>
 
