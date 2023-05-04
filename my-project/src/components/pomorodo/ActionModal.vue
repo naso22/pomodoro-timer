@@ -1,66 +1,66 @@
 <template>
     <transition name="modal">
         <div @click.self="$emit('close')" class="backdrop">
-                <div class="modal-content">
-                    <h3>setting menu</h3>
-                    <button data-v-74f6acd3 class="modal__close" @click="$emit('close')">
-                        <svg data-v-74f6acd3 xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
-                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                             stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
-                            <line data-v-74f6acd3 x1="18" y1="6" x2="6" y2="18"></line>
-                            <line data-v-74f6acd3 x1="6" y1="6" x2="18" y2="18"></line>
-                        </svg>
-                    </button>
-                    <form @submit.prevent="submitForm()">
-                        <div class="content__form">
-                            <div class="form__input">
-                                <label for="">Focus Time</label>
-                                <input type="number" ref="forcusInt">
-                            </div>
-
-                            <div class="form__input">
-                                <label for="">Short break</label>
-                                <input type="number" ref="shortInt">
-                            </div>
-
-                            <div class="form__input">
-                                <label for="">Long break</label>
-                                <input type="number" ref="longInt">
-                            </div>
-
-                            <div class="form__input">
-                                <label for="">Rounds</label>
-                                <input type="number" ref="roundInt">
-                            </div>
-
+            <div class="modal-content">
+                <h3>setting menu</h3>
+                <button data-v-74f6acd3 class="modal__close" @click="$emit('close')">
+                    <svg data-v-74f6acd3 xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
+                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
+                        <line data-v-74f6acd3 x1="18" y1="6" x2="6" y2="18"></line>
+                        <line data-v-74f6acd3 x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+                <form @submit.prevent="submitForm()">
+                    <div class="content__form">
+                        <div class="form__input">
+                            <label for="">Focus Time</label>
+                            <input type="number" ref="forcusInt" v-model="timeLimit">
                         </div>
-                        <button type="submit" class="configbtn"> Confirm</button>
-                    </form>
-                </div>
+
+                        <div class="form__input">
+                            <label for="">Short break</label>
+                            <input type="number" ref="shortInt" v-model="breakLimit">
+                        </div>
+
+                        <div class="form__input">
+                            <label for="">Long break</label>
+                            <input type="number" ref="longInt" v-model="longbreak">
+                        </div>
+
+                        <div class="form__input">
+                            <label for="">Rounds</label>
+                            <input type="number" ref="roundInt">
+                        </div>
+
+                    </div>
+                    <button type="submit" class="configbtn"> Confirm</button>
+                </form>
             </div>
+        </div>
     </transition>
 </template>
 <script>
 export default {
-    data(){
-        return{
-            timeLimit:10,
-            FixedLimit: 10,
-            breakLimit: 10,
-            longbreak: 10,
+    data() {
+        return {
+            timeLimit: 25,
+            FixedLimit: 25,
+            breakLimit: 5,
+            longbreak:  10,
         }
     },
     emits: ['close'],
-    methods:{
+    methods: {
         /*コンフィグボタンを押した時データを親に送る*/
-        submitForm(){
+        submitForm() {
             const data = {
                 timeLimit: this.$refs.forcusInt.value,
                 FixedLimit: this.$refs.forcusInt.value,
                 breakLimit: this.$refs.shortInt.value,
                 longbreak: this.$refs.longInt.value,
             }
-            this.$emit('setup-data',data)
+            this.$emit('setup-data', data)
         }
     }
 }
