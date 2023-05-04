@@ -59,7 +59,7 @@ export default {
             breakLimit: 5,
             longbreak: 10
         }
-        this.$emit('setup-data', data)
+        this.$emit('setup-data', data);
     },
     methods: {
         /*コンフィグボタンを押した時データを親に送る*/
@@ -70,7 +70,9 @@ export default {
                 breakLimit: this.$refs.shortInt.value,
                 longbreak: this.$refs.longInt.value,
             }
-            this.$emit('setup-data', data)
+            this.$emit('setup-data', data);
+            this.$emit('close')
+
         },
     },
 }
