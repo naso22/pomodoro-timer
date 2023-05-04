@@ -28,10 +28,6 @@
                             <input type="number" ref="longInt" v-model="longbreak">
                         </div>
 
-                        <div class="form__input">
-                            <label for="">Rounds</label>
-                            <input type="number" ref="roundInt">
-                        </div>
 
                     </div>
                     <button type="submit" class="configbtn"> Confirm</button>

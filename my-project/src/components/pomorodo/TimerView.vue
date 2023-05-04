@@ -45,7 +45,8 @@ export default {
             this.timeLimit =Number(data.timeLimit)*60;
             this.FixedLimit = Number(data.FixedLimit)*60;
             this.breakLimit = Number(data.breakLimit)*60
-            this.longbreak = Number(data.longbreak)*60
+            this.longbreak = Number(data.longbreak)*60;
+            this.timeElapsed =0;
 
         },
         setTimer(isPlaying) {
