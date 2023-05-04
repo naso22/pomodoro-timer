@@ -24,12 +24,12 @@ export default {
             //（集中タイム）経過時間・タイマーの間隔・初期秒数設定・秒数設定
             timeElapsed: 0,
             timerInterval: undefined,
-            timeLimit:10,
-            FixedLimit:10,
+            timeLimit:null,
+            FixedLimit:null,
 
             //（休憩時間）経過時間・タイマーの間隔・秒数設定
-            breakLimit: 5,
-            longbreak:20,
+            breakLimit: null,
+            longbreak:null,
             //ストップ・スタートの切り替え
             isPlaying: false,
 
@@ -41,10 +41,10 @@ export default {
     },
     methods: {
         setUpTimer(data){
-            this.timeLimit =Number(data.timeLimit);
-            this.FixedLimit = Number(data.FixedLimit);
-            this.breakLimit = Number(data.breakLimit)
-            this.longbreak = Number(data.longbreak)
+            this.timeLimit =Number(data.timeLimit)*60;
+            this.FixedLimit = Number(data.FixedLimit)*60;
+            this.breakLimit = Number(data.breakLimit)*60
+            this.longbreak = Number(data.longbreak)*60
 
         },
         setTimer(isPlaying) {

@@ -49,8 +49,18 @@ export default {
             breakLimit: 5,
             longbreak:  10,
         }
+
     },
     emits: ['close'],
+    mounted(){
+        const data = {
+            timeLimit: 25,
+            FixedLimit: 25,
+            breakLimit: 5,
+            longbreak: 10
+        }
+        this.$emit('setup-data', data)
+    },
     methods: {
         /*コンフィグボタンを押した時データを親に送る*/
         submitForm() {
@@ -61,8 +71,8 @@ export default {
                 longbreak: this.$refs.longInt.value,
             }
             this.$emit('setup-data', data)
-        }
-    }
+        },
+    },
 }
 </script>
 
