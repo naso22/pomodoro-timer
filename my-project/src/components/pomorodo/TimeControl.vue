@@ -30,7 +30,7 @@
             </div>
         </button>
         <!--スキップボタン-->
-        <button class="controll" @click="skipbutton()">
+        <button class="controll" @click="skipbutton()" @setup-data="sendData()">
             <svg-icon
                     class="settingicon"
                     type="mdi"
@@ -40,7 +40,8 @@
     </div>
     <action-modal
         @close="toggleModal"
-        v-show="isShowingAdjustments">
+        v-show="isShowingAdjustments"
+        @setup-data="sendData">
         <h3>setting menu</h3>
     </action-modal>
 </template>
@@ -86,6 +87,10 @@ export default {
         toggleModal() {
             this.isShowingAdjustments = !this.isShowingAdjustments
         },
+
+        sendData(data){
+            this.$emit('setup-data',data)
+        }
 
     },
 

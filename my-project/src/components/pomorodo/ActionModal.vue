@@ -11,26 +11,26 @@
                             <line data-v-74f6acd3 x1="6" y1="6" x2="18" y2="18"></line>
                         </svg>
                     </button>
-                    <form>
+                    <form @submit.prevent="submitForm()">
                         <div class="content__form">
                             <div class="form__input">
                                 <label for="">Focus Time</label>
-                                <input type="text">
+                                <input type="number" ref="forcusInt">
                             </div>
 
                             <div class="form__input">
                                 <label for="">Short break</label>
-                                <input type="text">
+                                <input type="number" ref="shortInt">
                             </div>
 
                             <div class="form__input">
                                 <label for="">Long break</label>
-                                <input type="text">
+                                <input type="number" ref="longInt">
                             </div>
 
                             <div class="form__input">
                                 <label for="">Rounds</label>
-                                <input type="text">
+                                <input type="number" ref="roundInt">
                             </div>
 
                         </div>
@@ -42,7 +42,27 @@
 </template>
 <script>
 export default {
+    data(){
+        return{
+            timeLimit:10,
+            FixedLimit: 10,
+            breakLimit: 10,
+            longbreak: 10,
+        }
+    },
     emits: ['close'],
+    methods:{
+        /*コンフィグボタンを押した時データを親に送る*/
+        submitForm(){
+            const data = {
+                timeLimit: this.$refs.forcusInt.value,
+                FixedLimit: this.$refs.forcusInt.value,
+                breakLimit: this.$refs.shortInt.value,
+                longbreak: this.$refs.longInt.value,
+            }
+            this.$emit('setup-data',data)
+        }
+    }
 }
 </script>
 

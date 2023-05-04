@@ -1,7 +1,11 @@
 <template>
     <timer-status :status="Status"></timer-status>
-    <the-time :elapsed="timeElapsed" :limit="timeLimit"></the-time>
-    <time-control @child-event="setTimer" @skip-event="skipTimer()" :isplaying="isPlaying"></time-control>
+    <the-time :elapsed="timeElapsed"
+              :limit="timeLimit"></the-time>
+    <time-control @child-event="setTimer"
+                  @skip-event="skipTimer()"
+                  :isplaying="isPlaying"
+                  @setup-data="setUpTimer"></time-control>
 </template>
 
 <script>
@@ -20,24 +24,30 @@ export default {
             //（集中タイム）経過時間・タイマーの間隔・初期秒数設定・秒数設定
             timeElapsed: 0,
             timerInterval: undefined,
-            timeLimit: 10,
-            FixedLimit: 10,
+            timeLimit:null,
+            FixedLimit: null,
 
             //（休憩時間）経過時間・タイマーの間隔・秒数設定
-            breakLimit: 5,
-            longbreak:20,
+            breakLimit: null,
+            longbreak:null,
             //ストップ・スタートの切り替え
             isPlaying: false,
 
             count: 0,
 
             /*集中・休憩判定*/
-            Status: false
-
+            Status: false,
         }
     },
-    methods: {
 
+
+    methods: {
+        setUpTimer(data){
+            this.timeLimit = data.timeLimit;
+            this.FixedLimit = data.FixedLimit;
+            this.breakLimit = data.breakLimit;
+            this.longbreak = data.longbreak;
+        },
         setTimer(isPlaying) {
             clearInterval(this.timerInterval);
             this.isPlaying = isPlaying;
