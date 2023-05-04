@@ -100,14 +100,14 @@ export default {
 
 <style scoped>
 .time {
-    height: 35vh;
+    height: 20vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .controll {
-    margin: 90px;
+    margin: 50px;
 }
 
 

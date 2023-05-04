@@ -2,6 +2,7 @@
     <timer-status :status="Status"></timer-status>
     <the-time :elapsed="timeElapsed"
               :limit="timeLimit"></the-time>
+    <div>{{ Math.floor(count / 2)}}  rounds</div>
     <time-control @child-event="setTimer"
                   @skip-event="skipTimer()"
                   :isplaying="isPlaying"
@@ -33,7 +34,7 @@ export default {
             //ストップ・スタートの切り替え
             isPlaying: false,
 
-            count: 0,
+            count: 2,
 
             /*集中・休憩判定*/
             Status: false,
@@ -95,3 +96,12 @@ export default {
 
 }
 </script>
+
+<style>
+div{
+    text-align: center;
+    color: white;
+    font-size: 1.3rem;
+    margin: 5px;
+}
+</style>
