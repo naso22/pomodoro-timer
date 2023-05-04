@@ -24,12 +24,12 @@ export default {
             //（集中タイム）経過時間・タイマーの間隔・初期秒数設定・秒数設定
             timeElapsed: 0,
             timerInterval: undefined,
-            timeLimit:null,
-            FixedLimit: null,
+            timeLimit:10,
+            FixedLimit:10,
 
             //（休憩時間）経過時間・タイマーの間隔・秒数設定
-            breakLimit: null,
-            longbreak:null,
+            breakLimit: 5,
+            longbreak:20,
             //ストップ・スタートの切り替え
             isPlaying: false,
 
@@ -39,14 +39,13 @@ export default {
             Status: false,
         }
     },
-
-
     methods: {
         setUpTimer(data){
-            this.timeLimit = data.timeLimit;
-            this.FixedLimit = data.FixedLimit;
-            this.breakLimit = data.breakLimit;
-            this.longbreak = data.longbreak;
+            this.timeLimit =Number(data.timeLimit);
+            this.FixedLimit = Number(data.FixedLimit);
+            this.breakLimit = Number(data.breakLimit)
+            this.longbreak = Number(data.longbreak)
+
         },
         setTimer(isPlaying) {
             clearInterval(this.timerInterval);
@@ -55,11 +54,13 @@ export default {
                 this.timeLimit = this.FixedLimit
                 this.Status = false;
                 this.startTimer()
+                console.log('start')
 
             } else {
                 this.timeLimit =this.breakLimit
                 this.Status = true;
                 this.startTimer()
+                console.log('break')
             }
         },
         //スタート・ストップボタンを押した時
@@ -67,6 +68,7 @@ export default {
             //1秒ごと実行
             this.timerInterval = setInterval(() => {
                 if (this.isPlaying) {
+                    console.log(this.timeElapsed,this.timeLimit);
                     // 残り時間がなくなったらカウントを止める
                     if (++this.timeElapsed === this.timeLimit) {
                         setTimeout(() => {
