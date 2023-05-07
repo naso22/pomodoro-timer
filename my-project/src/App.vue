@@ -21,6 +21,7 @@ export default {
         }
     },
     methods: {
+        /*背景切り替え*/
         changeBack(Status) {
             console.log(Status)
             this.isBackgroundChanged = Status;
@@ -40,11 +41,11 @@ html {
     padding: 0;
 }
 
-
+/*集中背景色*/
 .timer-background-false {
     background: linear-gradient(#9d97f1, #8c80f5);
 }
-
+/*休憩背景色*/
 .timer-background {
     background: linear-gradient(#a9a6d2, #978def);
 }

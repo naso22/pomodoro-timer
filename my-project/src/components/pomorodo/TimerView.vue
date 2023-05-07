@@ -41,6 +41,7 @@ export default {
         }
     },
     methods: {
+        /*モーダルからの時間データ*/
         setUpTimer(data){
             this.timeLimit =Number(data.timeLimit)*60;
             this.FixedLimit = Number(data.FixedLimit)*60;
@@ -49,6 +50,8 @@ export default {
             this.timeElapsed =0;
 
         },
+
+       /* 集中タイム・休憩タイムの切り替え・ストップ処理*/
         setTimer(isPlaying) {
             clearInterval(this.timerInterval);
             this.isPlaying = isPlaying;
@@ -89,6 +92,7 @@ export default {
                 }
             }, 1000);
         },
+        /*強制タイム切り替え*/
         skipTimer() {
             this.count = this.count + 1;
             this.timeElapsed = 0;
