@@ -56,12 +56,14 @@ export default {
                 this.timeLimit = this.FixedLimit
                 this.Status = false;
                 this.startTimer()
+                this.$emit('change-back',this.Status)
                 console.log('start')
 
             } else {
                 this.timeLimit =this.breakLimit
                 this.Status = true;
                 this.startTimer()
+                this.$emit('change-back',this.Status)
                 console.log('break')
             }
         },
@@ -98,7 +100,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 div{
     text-align: center;
     color: white;

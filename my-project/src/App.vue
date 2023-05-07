@@ -1,35 +1,51 @@
 <template>
-    <the-header></the-header>
-   <timer-view></timer-view>
+    <div class="timer-background-false" :class="{ 'timer-background': isBackgroundChanged }">
+        <the-header></the-header>
+        <timer-view @change-back="changeBack"></timer-view>
+    </div>
 </template>
+
 <script>
 import TheHeader from './components/layouts/The-Header.vue';
 import TimerView from "./components/pomorodo/TimerView.vue";
+
 export default {
     name: 'App',
     components: {
         TimerView,
         TheHeader,
     },
-
+    data() {
+        return {
+            isBackgroundChanged: false
+        }
+    },
+    methods: {
+        changeBack(Status) {
+            console.log(Status)
+            this.isBackgroundChanged = Status;
+        }
+    }
 }
 </script>
 
 <style>
-body{
-    margin: 0px;
-    padding: 0px;
-    background: linear-gradient(#726BD6, #8c80f5);
+body {
+    margin: 0;
+    padding: 0;
 }
-li{
-    list-style:none;
+
+html {
+    margin: 0;
+    padding: 0;
 }
-/* baseに記述 */
-a{
-    text-decoration: none;
-    color:#fff;
+
+
+.timer-background-false {
+    background: linear-gradient(#9d97f1, #8c80f5);
 }
-p{
-    margin: 0px ;
+
+.timer-background {
+    background: linear-gradient(#a9a6d2, #978def);
 }
 </style>
