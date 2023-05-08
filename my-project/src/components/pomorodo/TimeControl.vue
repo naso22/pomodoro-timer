@@ -10,23 +10,23 @@
                 </svg-icon>
             </button>
         </div>
-            <!--スタート・ストップボタン-->
-            <button v-if="isplaying" @click="eventbutton()">
-                <!--"isplaying"が trueの時ストップボタンを表示-->
-                <svg-icon
-                        class="settingicon__center"
-                        type="mdi"
-                        :path="mdiStop">
-                </svg-icon>
-            </button>
-            <!--"isplaying"が falseの時スタートボタンを表示-->
-            <button v-else @click="eventbutton()" class="circle">
-                <svg-icon
-                        class="settingicon__center"
-                        type="mdi"
-                        :path="mdiPlayOutline">
-                </svg-icon>
-            </button>
+        <!--スタート・ストップボタン-->
+        <button v-if="isplaying" @click="eventbutton()">
+            <!--"isplaying"が trueの時ストップボタンを表示-->
+            <svg-icon
+                    class="settingicon__center"
+                    type="mdi"
+                    :path="mdiStop">
+            </svg-icon>
+        </button>
+        <!--"isplaying"が falseの時スタートボタンを表示-->
+        <button v-else @click="eventbutton()" class="circle">
+            <svg-icon
+                    class="settingicon__center"
+                    type="mdi"
+                    :path="mdiPlayOutline">
+            </svg-icon>
+        </button>
         <!--スキップボタン-->
         <button class="circle" @click="skipbutton()" @setup-data="sendData()">
             <svg-icon
@@ -36,11 +36,11 @@
             </svg-icon>
         </button>
     </div>
-<!--    モーダル-->
+  <!--    モーダル-->
     <action-modal
-        @close="toggleModal"
-        v-show="isShowingAdjustments"
-        @setup-data="sendData">
+            @close="toggleModal"
+            v-show="isShowingAdjustments"
+            @setup-data="sendData">
         <h3>setting menu</h3>
     </action-modal>
 </template>
@@ -69,7 +69,7 @@ export default {
             mdiSkipNext: mdiSkipNext,
             mdiStop: mdiStop,
             isPlaying: false,
-            isShowingAdjustments:false
+            isShowingAdjustments: false
         }
     },
     methods: {
@@ -87,8 +87,8 @@ export default {
             this.isShowingAdjustments = !this.isShowingAdjustments
         },
 
-        sendData(data){
-            this.$emit('setup-data',data)
+        sendData(data) {
+            this.$emit('setup-data', data)
         }
 
     },
@@ -106,7 +106,6 @@ export default {
 }
 
 
-
 div {
     color: white;
     font-weight: inherit;
@@ -114,8 +113,8 @@ div {
     text-align: center;
 }
 
-button{
-   margin: 50px;
+button {
+    margin: 50px;
 }
 
 
@@ -124,11 +123,11 @@ button{
     height: 2rem;
 }
 
-.settingicon__center:hover{
-   color: rgba(255, 255, 255, 0.53);
+.settingicon__center:hover {
+    color: rgba(255, 255, 255, 0.53);
 }
 
-.settingicon:hover{
+.settingicon:hover {
     color: rgba(255, 255, 255, 0.53);
 }
 
