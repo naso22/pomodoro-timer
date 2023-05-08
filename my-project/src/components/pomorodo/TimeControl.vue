@@ -1,8 +1,8 @@
 <template>
     <div class="time">
         <!--時間設定ボタン-->
-        <div class="controll">
-            <button @click="toggleModal()">
+        <div>
+            <button @click="toggleModal()" class="circle">
                 <svg-icon
                         class="settingicon"
                         type="mdi"
@@ -10,27 +10,25 @@
                 </svg-icon>
             </button>
         </div>
-        <button class="controll">
             <!--スタート・ストップボタン-->
-            <div v-if="isplaying" @click="eventbutton()">
+            <button v-if="isplaying" @click="eventbutton()">
                 <!--"isplaying"が trueの時ストップボタンを表示-->
                 <svg-icon
                         class="settingicon__center"
                         type="mdi"
                         :path="mdiStop">
                 </svg-icon>
-            </div>
+            </button>
             <!--"isplaying"が falseの時スタートボタンを表示-->
-            <div v-else @click="eventbutton()">
+            <button v-else @click="eventbutton()" class="circle">
                 <svg-icon
                         class="settingicon__center"
                         type="mdi"
                         :path="mdiPlayOutline">
                 </svg-icon>
-            </div>
-        </button>
+            </button>
         <!--スキップボタン-->
-        <button class="controll" @click="skipbutton()" @setup-data="sendData()">
+        <button class="circle" @click="skipbutton()" @setup-data="sendData()">
             <svg-icon
                     class="settingicon"
                     type="mdi"
@@ -38,6 +36,7 @@
             </svg-icon>
         </button>
     </div>
+<!--    モーダル-->
     <action-modal
         @close="toggleModal"
         v-show="isShowingAdjustments"
@@ -100,15 +99,12 @@ export default {
 
 <style scoped>
 .time {
-    height: 20vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 25vh;
 }
 
-.controll {
-    margin: 50px;
-}
 
 
 div {
@@ -118,20 +114,20 @@ div {
     text-align: center;
 }
 
-button :hover {
-    cursor: pointer;
-    color: rgba(255, 255, 255, 0.58);
-
+button{
+   margin: 50px;
 }
+
 
 .settingicon {
     width: 2rem;
     height: 2rem;
 }
 
+
 .settingicon__center {
-    width: 3rem;
-    height: 3rem;;
+    width: 4rem;
+    height: 4rem;;
 }
 
 

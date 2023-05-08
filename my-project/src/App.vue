@@ -31,16 +31,6 @@ export default {
 </script>
 
 <style>
-body {
-    margin: 0;
-    padding: 0;
-}
-
-html {
-    margin: 0;
-    padding: 0;
-}
-
 /*集中背景色*/
 .timer-background-false {
     background: linear-gradient(#9d97f1, #8c80f5);
