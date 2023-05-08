@@ -124,6 +124,14 @@ button{
     height: 2rem;
 }
 
+.settingicon__center:hover{
+   color: rgba(255, 255, 255, 0.53);
+}
+
+.settingicon:hover{
+    color: rgba(255, 255, 255, 0.53);
+}
+
 
 .settingicon__center {
     width: 4rem;
