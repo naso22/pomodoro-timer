@@ -1,7 +1,7 @@
 <template>
     <div :class="timerClass">
         <the-header></the-header>
-        <timer-view @change-back="changeBack"></timer-view>
+        <timer-view @change-back="changePageColor"></timer-view>
     </div>
 </template>
 
@@ -17,17 +17,17 @@ export default {
     },
     data() {
         return {
-            timerClass: 'timer-background-false',
+            timerClass: 'forcus-background',
         };
     },
     methods: {
-        changeBack(value) {
+        changePageColor(value) {
             if (value === 'Break Time') {
                 this.timerClass = 'timer-background';
             } else if (value === 'FocusTime'){
-                this.timerClass = 'timer-background-false';
+                this.timerClass = 'forcus-background';
             }else{
-                this.timerClass = 'longtimer-backgraund';
+                this.timerClass = 'longtime-backgraund';
             }
         },
     },
@@ -35,17 +35,17 @@ export default {
 </script>
 
 <style scoped>
-/*集中背景色*/
-.timer-background-false {
+
+.forcus-background {
     background: linear-gradient(#9d97f1, #8c80f5);
 }
 
-/*休憩背景色*/
+
 .timer-background {
     background: linear-gradient(#a9a6d2, #978def);
 }
 
-.longtimer-backgraund{
+.longtime-backgraund{
     background: linear-gradient(#b4b3b3, #87e7b4);
 }
 </style>
