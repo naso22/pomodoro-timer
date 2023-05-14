@@ -6,7 +6,7 @@
     <time-control @child-event="startStopTimer"
                   @skip-event="skipTimer()"
                   :isplaying="isPlaying"
-                  @setup-data="setTimerLimits"></time-control>
+                  @set-timer="setTimerLimits"></time-control>
 </template>
 
 <script>
@@ -75,7 +75,6 @@ export default {
         }
     },
     methods: {
-
         setTimerLimits(data) {
             this.timeLimit = Number(data.timeLimit) * 60;
             this.FixedLimit = Number(data.FixedLimit) * 60;

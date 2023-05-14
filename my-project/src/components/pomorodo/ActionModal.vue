@@ -55,26 +55,26 @@ export default {
     },
     emits: ['close'],
     mounted(){
-        const data = {
+        const timerData = {
             timeLimit: 25,
             FixedLimit: 25,
             breakLimit: 5,
             longbreak: 10,
             quarterRounds:4,
         }
-        this.$emit('setup-data', data);
+        this.$emit('set-data', timerData);
     },
     methods: {
         /*コンフィグボタンを押した時データを親に送る*/
         submitForm() {
-            const data = {
+            const timerData = {
                 timeLimit: this.$refs.forcusInt.value,
                 FixedLimit: this.$refs.forcusInt.value,
                 breakLimit: this.$refs.shortInt.value,
                 longbreak: this.$refs.longInt.value,
                 quarterRounds: this.$refs.roundInt.value
             }
-            this.$emit('setup-data', data);
+            this.$emit('set-data', timerData);
             this.$emit('close')
 
         },

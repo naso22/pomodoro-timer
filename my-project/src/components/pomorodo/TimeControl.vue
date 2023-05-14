@@ -1,6 +1,5 @@
 <template>
     <div class="time">
-        <!--時間設定ボタン-->
         <div>
             <button @click="toggleModal()" class="circle">
                 <svg-icon
@@ -10,9 +9,7 @@
                 </svg-icon>
             </button>
         </div>
-        <!--スタート・ストップボタン-->
-        <button v-if="isplaying" @click="eventbutton()">
-            <!--"isplaying"が trueの時ストップボタンを表示-->
+        <button v-if="isplaying" @click="startStopButton()">
             <svg-icon
                     class="settingicon__center"
                     type="mdi"
@@ -20,7 +17,7 @@
             </svg-icon>
         </button>
         <!--"isplaying"が falseの時スタートボタンを表示-->
-        <button v-else @click="eventbutton()" class="circle">
+        <button v-else @click="startStopButton()" class="circle">
             <svg-icon
                     class="settingicon__center"
                     type="mdi"
@@ -28,7 +25,7 @@
             </svg-icon>
         </button>
         <!--スキップボタン-->
-        <button class="circle" @click="skipbutton()" @setup-data="sendData()">
+        <button class="circle" @click="skipButton()" @setup-data="setTimer()">
             <svg-icon
                     class="settingicon"
                     type="mdi"
@@ -40,7 +37,7 @@
     <action-modal
             @close="toggleModal"
             v-show="isShowingAdjustments"
-            @setup-data="sendData">
+            @set-data="setTimer">
         <h3>setting menu</h3>
     </action-modal>
 </template>
@@ -68,18 +65,19 @@ export default {
             mdiPlayOutline: mdiPlayOutline,
             mdiSkipNext: mdiSkipNext,
             mdiStop: mdiStop,
+
             isPlaying: false,
             isShowingAdjustments: false
         }
     },
     methods: {
-        /*スタート・ストップボタン切り替え*/
-        eventbutton() {
+
+       startStopButton() {
             this.isPlaying = !this.isplaying;
             this.$emit('child-event', this.isPlaying);
         },
 
-        skipbutton() {
+        skipButton() {
             this.$emit('skip-event');
         },
 
@@ -87,8 +85,8 @@ export default {
             this.isShowingAdjustments = !this.isShowingAdjustments
         },
 
-        sendData(data) {
-            this.$emit('setup-data', data)
+        setTimer(data) {
+            this.$emit('set-timer', data)
         }
 
     },
