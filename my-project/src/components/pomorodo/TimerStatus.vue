@@ -1,6 +1,6 @@
 <template>
-  <h2 v-if="status">Short break</h2>
-  <h2 v-else>Focus time</h2>
+  <h2>{{status}}</h2>
+
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-    <div class="timer-background-false" :class="{ 'timer-background': isBackgroundChanged }">
+    <div :class="timerClass">
         <the-header></the-header>
         <timer-view @change-back="changeBack"></timer-view>
     </div>
@@ -17,26 +17,35 @@ export default {
     },
     data() {
         return {
-            isBackgroundChanged: false
-        }
+            timerClass: 'timer-background-false',
+        };
     },
     methods: {
-        /*背景切り替え*/
-        changeBack(Status) {
-            console.log(Status)
-            this.isBackgroundChanged = Status;
-        }
-    }
-}
+        changeBack(value) {
+            if (value === 'Break Time') {
+                this.timerClass = 'timer-background';
+            } else if (value === 'FocusTime'){
+                this.timerClass = 'timer-background-false';
+            }else{
+                this.timerClass = 'longtimer-backgraund';
+            }
+        },
+    },
+};
 </script>
 
-<style>
+<style scoped>
 /*集中背景色*/
 .timer-background-false {
     background: linear-gradient(#9d97f1, #8c80f5);
 }
+
 /*休憩背景色*/
 .timer-background {
     background: linear-gradient(#a9a6d2, #978def);
+}
+
+.longtimer-backgraund{
+    background: linear-gradient(#b4b3b3, #87e7b4);
 }
 </style>

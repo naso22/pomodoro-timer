@@ -28,6 +28,11 @@
                             <input type="number" ref="longInt" v-model="longbreak">
                         </div>
 
+                        <div class="form__input">
+                            <label for="">round</label>
+                            <input type="number" ref="roundInt" v-model="quarterRounds">
+                        </div>
+
 
                     </div>
                     <button type="submit" class="configbtn"> Confirm</button>
@@ -44,6 +49,7 @@ export default {
             FixedLimit: 25,
             breakLimit: 5,
             longbreak:  10,
+            quarterRounds:4,
         }
 
     },
@@ -53,7 +59,8 @@ export default {
             timeLimit: 25,
             FixedLimit: 25,
             breakLimit: 5,
-            longbreak: 10
+            longbreak: 10,
+            quarterRounds:4,
         }
         this.$emit('setup-data', data);
     },
@@ -65,6 +72,7 @@ export default {
                 FixedLimit: this.$refs.forcusInt.value,
                 breakLimit: this.$refs.shortInt.value,
                 longbreak: this.$refs.longInt.value,
+                quarterRounds: this.$refs.roundInt.value
             }
             this.$emit('setup-data', data);
             this.$emit('close')
@@ -146,6 +154,11 @@ input {
     margin: 5px;
     box-shadow: 2px 4px 13px rgba(0, 0, 0, 0.3);
 }
+
+.configbtn:hover {
+    background-color: #a099da;
+}
+
 
 .modal-enter-active {
     animation: modal 0.3s ease-out;
